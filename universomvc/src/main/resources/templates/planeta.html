@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="index :: head">
+    <meta charset="UTF-8">
+    <title>Planeta</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<nav th:replace="index :: navbar"></nav>
+
+<!-- Card del planeta -->
+<!-- Card del planeta -->
+<div class="container my-5">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Mercurio el primero del Sistema solar</h1>
+            <h2 class="card-title" th:text="${planeta1.nombre}"></h2>
+            <p class="card-text">Es de tipo <span th:text="${planeta1.tipo}"></span></p>
+            <p class="card-text">Su tamaño es de <span th:text="${planeta1.tamaño}"></span></p>
+            <p class="card-text">Está a <span th:text="${planeta1.distancia}"></span> km de la Tierra</p>
+            <p class="card-text">Tiene un total de lunas de <span th:text="${planeta1.lunas}"></span></p>
+        </div>
+        <img th:src="@{${planeta1.imagen}}" alt="Imagen de planeta" class="card-img-top" style="width: 100%; height: auto;">
+    </div>
+</div>
+
+
+<footer th:replace="index :: footer"></footer>
+
+<div th:replace="index :: jsincludesboot"></div>
+</body>
+</html>
