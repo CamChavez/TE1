@@ -1,15 +1,24 @@
 package mx.unam.aragon.ico.te.universomvc.modelos;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
+@Entity
 public class Planeta {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String nombre;
     private String tipo;
     private String tamaño;
     private String imagen;
     private String distancia;
-    private int lunas;
+    private Integer lunas;
 
     public Planeta() {
     }
@@ -72,7 +81,7 @@ public class Planeta {
         this.distancia = distancia;
     }
 
-    public int getLunas() {
+    public Integer getLunas() {
         return lunas;
     }
 

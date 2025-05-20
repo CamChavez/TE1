@@ -2,30 +2,54 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="index :: head">
     <meta charset="UTF-8">
-    <title>Planeta</title>
+    <title>Planetas</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 <nav th:replace="index :: navbar"></nav>
 
-<!-- Card del planeta -->
-<!-- Card del planeta -->
 <div class="container my-5">
-    <div class="card">
+    <!-- Mensajes -->
+    <p th:if="${param.exito}" class="alert alert-success">✅ Planeta agregado correctamente</p>
+    <p th:if="${param.eliminado}" class="alert alert-warning">🗑️ Planeta eliminado correctamente</p>
+
+    <!-- 🌞 Card fija de Mercurio -->
+    <div class="card mb-4">
         <div class="card-body">
-            <h1 class="card-title">Mercurio el primero del Sistema solar</h1>
-            <h2 class="card-title" th:text="${planeta1.nombre}"></h2>
-            <p class="card-text">Es de tipo <span th:text="${planeta1.tipo}"></span></p>
-            <p class="card-text">Su tamaño es de <span th:text="${planeta1.tamaño}"></span></p>
-            <p class="card-text">Está a <span th:text="${planeta1.distancia}"></span> km de la Tierra</p>
-            <p class="card-text">Tiene un total de lunas de <span th:text="${planeta1.lunas}"></span></p>
+            <h1 class="card-title">Mercurio el primero del Sistema Solar</h1>
+            <h2 th:text="${planeta1.nombre}"></h2>
+            <p>Es de tipo <span th:text="${planeta1.tipo}"></span></p>
+            <p>Su tamaño es de <span th:text="${planeta1.tamaño}"></span></p>
+            <p>Está a <span th:text="${planeta1.distancia}"></span> km de la Tierra</p>
+            <p>Tiene un total de lunas: <span th:text="${planeta1.lunas}"></span></p>
         </div>
-        <img th:src="@{${planeta1.imagen}}" alt="Imagen de planeta" class="card-img-top" style="width: 100%; height: auto;">
+        <img th:src="@{${planeta1.imagen}}" class="card-img-top" style="width: 100%; height: auto;" />
+    </div>
+
+    <!-- 🌎 Cards dinámicas desde base de datos -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col" th:each="p : ${planetas}">
+            <div class="card h-100">
+                <img th:src="${p.imagen}" class="card-img-top" alt="Imagen del planeta" />
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${p.nombre}"></h5>
+                    <p class="card-text">Tipo: <span th:text="${p.tipo}"></span></p>
+                    <p class="card-text">Tamaño: <span th:text="${p.tamaño}"></span></p>
+                    <p class="card-text">Distancia: <span th:text="${p.distancia}"></span> km</p>
+                    <p class="card-text">Lunas: <span th:text="${p.lunas}"></span></p>
+                </div>
+                <div class="card-footer">
+                    <a th:href="@{/datos/eliminar/{id}(id=${p.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="/datos/nuevo" class="btn btn-primary">➕ Agregar otro planeta</a>
     </div>
 </div>
 
-
 <footer th:replace="index :: footer"></footer>
-
 <div th:replace="index :: jsincludesboot"></div>
 </body>
 </html>

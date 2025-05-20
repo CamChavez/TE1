@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="index :: head"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<nav th:insert="index :: navbar"></nav>
+
+<div class="container mt-5">
+    <hr>
+
+    <form th:action="@{/datos/guardar}" th:object="${planeta}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" th:field="*{nombre}" class="form-control"/>
+
+        <label for="tipo">Tipo:</label>
+        <input type="text" id="tipo" th:field="*{tipo}" class="form-control"/>
+
+        <label for="tamano">Tamaño:</label>
+        <input type="text" id="tamano" th:field="*{tamaño}" class="form-control"/>
+
+        <label for="imagen">Imagen:</label>
+        <input type="text" id="imagen" th:field="*{imagen}" class="form-control"/>
+
+        <label for="distancia">Distancia:</label>
+        <input type="text" id="distancia" th:field="*{distancia}" class="form-control"/>
+
+        <label for="lunas">Lunas:</label>
+        <input type="number" id="lunas" th:field="*{lunas}" class="form-control"/>
+
+        <br>
+        <button type="submit" class="btn btn-primary">ENVIAR</button>
+    </form>
+</div>
+
+<footer th:replace="index :: footer"></footer>
+
+<div th:replace="index :: jsincludesboot"></div>
+
+</body>
+</html>
